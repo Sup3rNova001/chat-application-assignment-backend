@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const chat_controller_1 = require("../controllers/chat.controller");
+const security_middleware_1 = require("../middlewares/security.middleware");
+const router = (0, express_1.Router)();
+router.get("/", security_middleware_1.securityCheck, chat_controller_1.ChatController.getChats);
+router.post("/join", security_middleware_1.securityCheck, chat_controller_1.ChatController.joinChat);
+router.post("/create", security_middleware_1.securityCheck, chat_controller_1.ChatController.createChat);
+exports.default = router;
